@@ -14,7 +14,9 @@ kubectl get pods
 waiting all RUNNING
 
 # Setting ReplicaSet
+<code>
 kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'rs.initiate({_id: "rs0", version: 1, members: [ {_id: 0, host: "mongodb-0.mongodb-service.default.svc.cluster.local:27017"}, {_id: 1, host: "mongodb-1.mongodb-service.default.svc.cluster.local:27017"}, {_id: 2, host: "mongodb-2.mongodb-service.default.svc.cluster.local:27017"} ]});'
+</code>
 
 # Check status
 kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'rs.status();'
