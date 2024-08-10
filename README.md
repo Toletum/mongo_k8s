@@ -2,20 +2,19 @@
 Mongodb on k8s
 
 # Create keyfile for replicaset
-/usr/bin/openssl rand -base64 741 > keyfile
+<code>/usr/bin/openssl rand -base64 741 > keyfile
 kubectl create secret generic keyfile --from-file=keyfile=keyfile
-rm keyfile
+rm keyfile</code>
 
 # Up 
-kubectl apply -f mongodb-replicaset.yaml
+<code>kubectl apply -f mongodb-replicaset.yaml</code>
 
-kubectl get pods
+<code>kubectl get pods</code>
 
 waiting all RUNNING
 
 # Setting ReplicaSet
-<code>
-kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'rs.initiate({_id: "rs0", version: 1, members: [ {_id: 0, host: "mongodb-0.mongodb-service.default.svc.cluster.local:27017"}, {_id: 1, host: "mongodb-1.mongodb-service.default.svc.cluster.local:27017"}, {_id: 2, host: "mongodb-2.mongodb-service.default.svc.cluster.local:27017"} ]});'
+<code>kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'rs.initiate({_id: "rs0", version: 1, members: [ {_id: 0, host: "mongodb-0.mongodb-service.default.svc.cluster.local:27017"}, {_id: 1, host: "mongodb-1.mongodb-service.default.svc.cluster.local:27017"}, {_id: 2, host: "mongodb-2.mongodb-service.default.svc.cluster.local:27017"} ]});'
 </code>
 
 # Check status
