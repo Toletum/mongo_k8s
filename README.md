@@ -18,12 +18,12 @@ waiting all RUNNING
 </code>
 
 # Check status
-kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'rs.status();'
+<code>kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'rs.status();'</code>
 
 # Add user
-kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'db.getSiblingDB("admin").createUser({user:"admin",pwd:"admin",roles:[{role:"root",db:"admin"}]});'
+<code>kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'db.getSiblingDB("admin").createUser({user:"admin",pwd:"admin",roles:[{role:"root",db:"admin"}]});'</code>
 
 
 
 # Testing minikube
-curl -v http://192.168.49.2:30002
+<code>curl -v http://192.168.49.2:30002</code>
