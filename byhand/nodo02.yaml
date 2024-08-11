@@ -34,6 +34,7 @@ metadata:
   name: nodo02
   labels:
     app: nodo02
+    service: mongodb
   namespace: default
 spec:
   nodeSelector:

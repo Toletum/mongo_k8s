@@ -13,6 +13,9 @@ kubectl apply -f nodo01.yaml
 
 kubectl exec -ti nodo01 -c nodo01 -- mongosh --username admin --password admin --authenticationDatabase admin
 
+kubectl exec -ti nodo01 -c nodo01 -- mongosh 'mongodb://admin:admin@localhost:27017/?replicaSet=rs0&authSource=admin'
+
+
 kubectl exec -ti nodo01 -c nodo01 -- mongosh
 
 db.getSiblingDB("admin").createUser({user:"admin",pwd:"admin",roles:[{role:"root",db:"admin"}]});
