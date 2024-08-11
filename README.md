@@ -2,7 +2,7 @@
 Mongodb on k8s
 
 # Create keyfile for replicaset
-<code>/usr/bin/openssl rand -base64 30</code>
+<code>/usr/bin/openssl rand -base64 741</code>
 
 copy & paste in mongodb-replicaset.yaml
 
