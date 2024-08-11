@@ -16,9 +16,19 @@ spec:
         - name: HOME
           value: /root
       volumeMounts:
-        - mountPath: /data/db
-          name: data
+        - mountPath: /data1/db
+          name: data1
+        - mountPath: /data2/db
+          name: data2
+        - mountPath: /data3/db
+          name: data3
   volumes:
-    - name: data
+    - name: data1
+      persistentVolumeClaim:
+        claimName: mongodb-pvc-nodo01
+    - name: data2
+      persistentVolumeClaim:
+        claimName: mongodb-pvc-nodo02
+    - name: data3
       persistentVolumeClaim:
         claimName: mongodb-pvc-nodo03
