@@ -24,9 +24,9 @@ data:
 
 ---
 apiVersion: v1
-kind: ConfigMap
+kind: Secret
 metadata:
   name: mongodb-user
 data:
-  MONGO_INITDB_ROOT_USERNAME: admin
-  MONGO_INITDB_ROOT_PASSWORD: admin
+  MONGO_INITDB_ROOT_USERNAME: YWRtaW4=
+  MONGO_INITDB_ROOT_PASSWORD: YWRtaW4=
