@@ -7,11 +7,17 @@ Mongodb on k8s
 copy & paste in mongodb-replicaset.yaml
 
 # Up 
-<code>kubectl apply -f mongodb-net.yaml</code>
+<code>
+kubectl apply -f mongodb-net.yaml
+</code>
 
-<code>kubectl apply -f mongodb-replicaset.yaml</code>
+<code>
+kubectl apply -f mongodb-replicaset.yaml
+</code>
 
-<code>kubectl get pods</code>
+<code>
+kubectl get pods
+</code>
 
 waiting all RUNNING
 
@@ -25,12 +31,15 @@ kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'rs.initiate({_id: "rs0", ve
 kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'rs.status();'
 </code>
 
+find the PRIMARY
+
 # Add user
 <code>
 kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'db.getSiblingDB("admin").createUser({user:"admin",pwd:"admin",roles:[{role:"root",db:"admin"}]});'
 </code>
 
 
+kubectl exec -ti mongodb-0 -c mongodb -- mongosh mongodb://admin:admin@localhost:27017?replicaSet=rs0
 
 # Testing minikube
 <code>
