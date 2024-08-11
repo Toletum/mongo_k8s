@@ -50,10 +50,6 @@ spec:
         - "--replSet"
         - "rs0"
         - "--auth"
-        - "--clusterAuthMode"
-        - "keyFile"
-        - "--keyFile"
-        - "/etc/keyfile-volume/keyfile"
         - "--setParameter"
         - "authenticationMechanisms=SCRAM-SHA-1"
       env:
