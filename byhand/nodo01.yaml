@@ -16,19 +16,6 @@ spec:
 
 ---
 apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mongodb-pvc-nodo01
-  namespace: default
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 2Gi
-
----
-apiVersion: v1
 kind: Pod
 metadata:
   name: nodo01
@@ -74,6 +61,8 @@ spec:
         - name: keyfile-volume
           readOnly: true
           mountPath: /etc/keyfile-volume
+        - name: config-volume
+          mountPath: /etc/mongo-config
         - mountPath: /data/db
           name: data
   volumes:
@@ -81,6 +70,9 @@ spec:
       configMap:
         name: keyfile
         defaultMode: 0600
+    - name: config-volume
+      configMap:
+        name: mongo-config
     - name: data
       persistentVolumeClaim:
         claimName: mongodb-pvc-nodo01
