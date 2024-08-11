@@ -16,16 +16,23 @@ copy & paste in mongodb-replicaset.yaml
 waiting all RUNNING
 
 # Setting ReplicaSet
-<code>kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'rs.initiate({_id: "rs0", version: 1, members: [ {_id: 0, host: "mongodb-0.mongodb-service.default.svc.cluster.local:27017"}, {_id: 1, host: "mongodb-1.mongodb-service.default.svc.cluster.local:27017"}, {_id: 2, host: "mongodb-2.mongodb-service.default.svc.cluster.local:27017"} ]});'
+<code>
+kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'rs.initiate({_id: "rs0", version: 1, members: [ {_id: 0, host: "mongodb-0.mongodb-service.default.svc.cluster.local:27017"}, {_id: 1, host: "mongodb-1.mongodb-service.default.svc.cluster.local:27017"}, {_id: 2, host: "mongodb-2.mongodb-service.default.svc.cluster.local:27017"} ]});'
 </code>
 
 # Check status
-<code>kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'rs.status();'</code>
+<code>
+kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'rs.status();'
+</code>
 
 # Add user
-<code>kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'db.getSiblingDB("admin").createUser({user:"admin",pwd:"admin",roles:[{role:"root",db:"admin"}]});'</code>
+<code>
+kubectl exec mongodb-0 -c mongodb -- mongosh --eval 'db.getSiblingDB("admin").createUser({user:"admin",pwd:"admin",roles:[{role:"root",db:"admin"}]});'
+</code>
 
 
 
 # Testing minikube
-<code>curl -v http://192.168.49.2:30002</code>
+<code>
+curl -v http://192.168.49.2:30002
+</code>
