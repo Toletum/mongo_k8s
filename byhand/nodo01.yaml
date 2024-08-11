@@ -47,7 +47,13 @@ spec:
         - "0.25"
         - "--bind_ip"
         - "0.0.0.0"
+        - "--replSet"
+        - "rs0"
         - "--auth"
+        - "--clusterAuthMode"
+        - "keyFile"
+        - "--keyFile"
+        - "/etc/keyfile-volume/keyfile"
         - "--setParameter"
         - "authenticationMechanisms=SCRAM-SHA-1"
       env:
