@@ -42,6 +42,7 @@ metadata:
   name: mongodb-headless
   namespace: default
 spec:
+  type: None
   ports:
   - port: 27017
     targetPort: 27017
