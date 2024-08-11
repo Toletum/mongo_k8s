@@ -36,6 +36,8 @@ metadata:
     app: nodo01
   namespace: default
 spec:
+  nodeSelector:
+    role: minikube-m02
   containers:
     - name: nodo01
       image: mongo:7.0.12

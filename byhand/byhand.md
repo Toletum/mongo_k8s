@@ -16,6 +16,8 @@ kubectl exec -ti nodo01 -c nodo01 -- mongosh
 
 db.getSiblingDB("admin").createUser({user:"admin",pwd:"admin",roles:[{role:"root",db:"admin"}]});
 
+kubectl exec -ti nodo01 -c nodo01 -- mongosh -u admin -p admin
+
 rs.reconfig({_id: "rs0", version: 1, members: [ {_id: 0, host: "nodo01-host:30000"} ]});
 
 rs.status()
