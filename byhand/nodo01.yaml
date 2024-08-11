@@ -37,7 +37,7 @@ metadata:
   namespace: default
 spec:
   nodeSelector:
-    role: minikube-m02
+    kubernetes.io/hostname: minikube-m03
   containers:
     - name: nodo01
       image: mongo:7.0.12
