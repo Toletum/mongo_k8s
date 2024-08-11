@@ -11,6 +11,7 @@ kubectl apply -f myrs.yaml
 
 kubectl apply -f nodo01.yaml
 
+kubectl exec -ti nodo01 -c nodo01 -- mongosh --username admin --password admin --authenticationDatabase admin
 
 kubectl exec -ti nodo01 -c nodo01 -- mongosh
 
@@ -18,7 +19,7 @@ db.getSiblingDB("admin").createUser({user:"admin",pwd:"admin",roles:[{role:"root
 
 kubectl exec -ti nodo01 -c nodo01 -- mongosh -u admin -p admin
 
-rs.reconfig({_id: "rs0", version: 1, members: [ {_id: 0, host: "nodo01-host:30000"} ]});
+rs.reconfig({_id: "rs0", version: 1, members: [ {_id: 0, host: "nodo01-host:27017"} ]});
 
 rs.status()
 

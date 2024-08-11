@@ -22,3 +22,11 @@ data:
     c3a2d2wCtmW+n01GJpvt4BxFlFr9W/41gWwkMDRxGbfCJLXSDrHXqXNd2D+6w/tI
     axGR9nVf4tXXUyti0IH1VeJIhvet
 
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongodb-user
+data:
+  MONGO_INITDB_ROOT_USERNAME: admin
+  MONGO_INITDB_ROOT_PASSWORD: admin
