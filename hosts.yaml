@@ -1,0 +1,39 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-script-configmap
+  namespace: default
+data:
+  my-script.sh: |
+    #!/bin/bash
+    echo "$HOSTS" >> /etc/hosts
+    sleep infinity
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mpod
+spec:
+  containers:
+  - name: my-container
+    image: alpine
+    command: ["/bin/sh"]
+    args: ["/scripts/my-script.sh"]
+    env:
+      - name: HOSTS
+        value: "192.160.0.131 casa\n192.168.0.131 casa2"
+    volumeMounts:
+    - name: script-volume
+      mountPath: /scripts
+      readOnly: true
+  volumes:
+  - name: script-volume
+    configMap:
+      name: my-script-configmap
+      defaultMode: 0755
+      items:
+      - key: my-script.sh
+        path: my-script.sh
+
