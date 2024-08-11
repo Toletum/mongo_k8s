@@ -4,7 +4,7 @@ from pymongo.errors import ConnectionFailure
 # Detalles de la conexión
 username = "admin"
 password = "admin"
-hosts = "192.168.0.130:27017,localhost:27018,localhost:27019"
+hosts = "192.168.0.130:27017,192.168.0.130:27018,192.168.0.130:27019"
 replica_set_name = "rs0"
 auth_source = "admin"  # Base de datos donde se autentica el usuario
 

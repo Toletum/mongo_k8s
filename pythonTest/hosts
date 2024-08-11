@@ -1,0 +1,4 @@
+192.168.0.130 mongodb-0.mongodb-service.default.svc.cluster.local
+192.168.0.130 mongodb-1.mongodb-service.default.svc.cluster.local
+192.168.0.130 mongodb-2.mongodb-service.default.svc.cluster.local
+
