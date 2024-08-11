@@ -72,9 +72,8 @@ spec:
               mountPath: /data/db
       volumes:
         - name: keyfile-volume
-          secret:
-            secretName: keyfile
-            defaultMode: 256
+          configMap:
+            name: keyfile
   volumeClaimTemplates:
   - metadata:
       name: data

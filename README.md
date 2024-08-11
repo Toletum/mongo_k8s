@@ -7,6 +7,8 @@ Mongodb on k8s
 copy & paste in mongodb-replicaset.yaml
 
 # Up 
+<code>kubectl apply -f mongodb-net.yaml</code>
+
 <code>kubectl apply -f mongodb-replicaset.yaml</code>
 
 <code>kubectl get pods</code>
