@@ -2,9 +2,9 @@
 Mongodb on k8s
 
 # Create keyfile for replicaset
-<code>/usr/bin/openssl rand -base64 741 > keyfile
-kubectl create secret generic keyfile --from-file=keyfile=keyfile
-rm keyfile</code>
+<code>/usr/bin/openssl rand -base64 30</code>
+
+copy & paste in mongodb-replicaset.yaml
 
 # Up 
 <code>kubectl apply -f mongodb-replicaset.yaml</code>

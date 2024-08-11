@@ -1,5 +1,14 @@
 ---
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keyfile
+data:
+  keyfile: |
+    7Lqke22Zjk3BbENID7ecQ4pZrPTduu1LnykKojk6
+
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: mongodb-service

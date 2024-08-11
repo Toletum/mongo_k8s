@@ -25,4 +25,9 @@ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
 # Create k8s
-minikube start --nodes=3 --cpus=2 --memory=2096 --driver=docker
+minikube start --nodes=4 --cpus=2 --memory=2096 --driver=docker
+
+# Install flannel
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+    
