@@ -40,7 +40,7 @@ spec:
     kubernetes.io/hostname: minikube-m02
   containers:
     - name: nodo01
-      image: mongo:7.0.12
+      image: mongodb/mongodb-community-server:latest
       command:
         - "numactl"
         - "--interleave=all"
