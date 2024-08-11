@@ -61,8 +61,6 @@ spec:
         - name: keyfile-volume
           readOnly: true
           mountPath: /etc/keyfile-volume
-        - name: config-volume
-          mountPath: /etc/mongo-config
         - mountPath: /data/db
           name: data
   volumes:

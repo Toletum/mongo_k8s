@@ -19,10 +19,6 @@ NOTE: Maybe you have to clean /data/db/*
 
 kubectl apply -f nodo01.yaml
 
-kubectl exec -ti nodo01 -c nodo01 -- mongosh --username admin --password admin --authenticationDatabase admin
-
-kubectl exec -ti nodo01 -c nodo01 -- mongosh 'mongodb://admin:admin@localhost:27017/?replicaSet=rs0&authSource=admin'
-
 
 kubectl exec -ti nodo01 -c nodo01 -- mongosh -eval 'rs.initiate();'
 kubectl exec -ti nodo01 -c nodo01 -- mongosh -eval 'db.getSiblingDB("admin").createUser({user:process.env.MONGO_INITDB_ROOT_USERNAME,pwd:process.env.MONGO_INITDB_ROOT_PASSWORD,roles:[{role:"root",db:"admin"}]});'
