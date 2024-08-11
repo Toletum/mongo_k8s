@@ -42,8 +42,6 @@ spec:
     - name: nodo01
       image: mongodb/mongodb-community-server:latest
       command:
-        - "numactl"
-        - "--interleave=all"
         - "mongod"
         - "--wiredTigerCacheSizeGB"
         - "0.25"
