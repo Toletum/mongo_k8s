@@ -4,7 +4,7 @@ from pymongo.errors import ConnectionFailure
 # Detalles de la conexión
 username = "admin"
 password = "admin"
-hosts = "192.168.0.130:27017,192.168.0.130:27018,192.168.0.130:27019"
+hosts = "nodo01-host:30000,nodo02-host:30001,nodo03-host:30002"
 replica_set_name = "rs0"
 auth_source = "admin"  # Base de datos donde se autentica el usuario
 
@@ -23,6 +23,7 @@ try:
     # Mostrar el estado del replica set
     print("Estado del replica set:")
     print(client.admin.command("replSetGetStatus"))
+    print(client.nodes)
 
 except ConnectionFailure as e:
     print(f"Error de conexión a MongoDB: {e}")
