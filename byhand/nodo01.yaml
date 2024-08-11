@@ -58,6 +58,11 @@ spec:
         - "/etc/keyfile-volume/keyfile"
         - "--setParameter"
         - "authenticationMechanisms=SCRAM-SHA-1"
+      env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: "admin"
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: "admin"
       volumeMounts:
         - name: keyfile-volume
           readOnly: true
