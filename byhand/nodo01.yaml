@@ -40,7 +40,7 @@ spec:
     kubernetes.io/hostname: minikube-m02
   containers:
     - name: nodo01
-      image: mongodb/mongodb-community-server:latest
+      image: mongo:7.0.12
       command:
         - "mongod"
         - "--wiredTigerCacheSizeGB"
