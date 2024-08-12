@@ -18,6 +18,7 @@ docker exec gluster-node1 gluster volume create gv0 replica 3 \
 
 
 docker exec gluster-node1 gluster volume start gv0
+docker exec gluster-node1 gluster volume set gv0 performance.cache-size 1GB
 docker exec gluster-node1 gluster volume status
 docker exec gluster-node1 gluster volume info
 
