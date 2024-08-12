@@ -1,0 +1,107 @@
+version: '3.8'
+
+services:
+  mongo1:
+    image: mongo:7.0.12
+    container_name: nodo01
+    hostname: nodo01
+    command:
+      - "mongod"
+      - "--port"
+      - "27017"
+      - "--wiredTigerCacheSizeGB"
+      - "0.25"
+      - "--bind_ip"
+      - "0.0.0.0"
+      - "--replSet"
+      - "rs0"
+      - "--auth"
+      - "--keyFile"
+      - "/etc/keyfile-volume/keyfile"  # chown 999:999 keyfile
+      - "--setParameter"
+      - "authenticationMechanisms=SCRAM-SHA-1"
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data1:/data/db
+      - mongo_config1:/data/configdb
+      - /home/toletum/apps/bigdata/mongo_k8s/docker/keyfile:/etc/keyfile-volume/keyfile:ro
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    networks:
+      - mongo_net
+
+  mongo2:
+    image: mongo:7.0.12
+    container_name: nodo02
+    hostname: nodo02
+    command:
+      - "mongod"
+      - "--port"
+      - "27018"
+      - "--wiredTigerCacheSizeGB"
+      - "0.25"
+      - "--bind_ip"
+      - "0.0.0.0"
+      - "--replSet"
+      - "rs0"
+      - "--auth"
+      - "--keyFile"
+      - "/etc/keyfile-volume/keyfile"  # chown 999:999 keyfile
+      - "--setParameter"
+      - "authenticationMechanisms=SCRAM-SHA-1"
+    ports:
+      - "27018:27018"
+    volumes:
+      - mongo_data2:/data/db
+      - mongo_config2:/data/configdb
+      - /home/toletum/apps/bigdata/mongo_k8s/docker/keyfile:/etc/keyfile-volume/keyfile:ro
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    networks:
+      - mongo_net
+
+  mongo3:
+    image: mongo:7.0.12
+    container_name: nodo03
+    hostname: nodo03
+    command:
+      - "mongod"
+      - "--port"
+      - "27019"
+      - "--wiredTigerCacheSizeGB"
+      - "0.25"
+      - "--bind_ip"
+      - "0.0.0.0"
+      - "--replSet"
+      - "rs0"
+      - "--auth"
+      - "--keyFile"
+      - "/etc/keyfile-volume/keyfile"  # chown 999:999 keyfile
+      - "--setParameter"
+      - "authenticationMechanisms=SCRAM-SHA-1"
+    ports:
+      - "27019:27019"
+    volumes:
+      - mongo_data3:/data/db
+      - mongo_config3:/data/configdb
+      - /home/toletum/apps/bigdata/mongo_k8s/docker/keyfile:/etc/keyfile-volume/keyfile:ro
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    networks:
+      - mongo_net
+
+volumes:
+  mongo_data1:
+  mongo_data2:
+  mongo_data3:
+  mongo_config1:
+  mongo_config2:
+  mongo_config3:
+
+networks:
+  mongo_net:
+    driver: bridge

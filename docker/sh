@@ -1,0 +1,62 @@
+docker rm nodo01
+
+docker run -d \
+  --name nodo01 \
+  --hostname nodo01 \
+  --net mongo_net \
+  -p 27017:27017 \
+  -v mongo_data1:/data/db \
+  -v $(pwd)/keyfile-volume:/etc/keyfile-volume:ro \
+  -e MONGO_INITDB_ROOT_USERNAME=admin \
+  -e MONGO_INITDB_ROOT_PASSWORD=admin \
+  -e HOME=/root \
+  mongo:7.0.12 \
+  mongod \
+    --wiredTigerCacheSizeGB 0.25 \
+    --bind_ip 0.0.0.0 \
+    --replSet rs0 \
+    --auth \
+    --keyFile /etc/keyfile-volume/keyfile \
+    --setParameter authenticationMechanisms=SCRAM-SHA-1
+
+
+docker run -d \
+  --name nodo02 \
+  --hostname nodo02 \
+  --net mongo_net \
+  -p 27018:27017 \
+  -v mongo_data2:/data/db \
+  -v $(pwd)/keyfile-volume:/etc/keyfile-volume:ro \
+  -e MONGO_INITDB_ROOT_USERNAME=admin \
+  -e MONGO_INITDB_ROOT_PASSWORD=admin \
+  -e HOME=/root \
+  mongo:7.0.12 \
+  mongod \
+    --wiredTigerCacheSizeGB 0.25 \
+    --bind_ip 0.0.0.0 \
+    --replSet rs0 \
+    --auth \
+    --keyFile /etc/keyfile-volume/keyfile \
+    --setParameter authenticationMechanisms=SCRAM-SHA-1
+
+
+docker run -d \
+  --name nodo03 \
+  --hostname nodo03 \
+  --net mongo_net \
+  -p 27019:27017 \
+  -v mongo_data3:/data/db \
+  -v $(pwd)/keyfile-volume:/etc/keyfile-volume:ro \
+  -e MONGO_INITDB_ROOT_USERNAME=admin \
+  -e MONGO_INITDB_ROOT_PASSWORD=admin \
+  -e HOME=/root \
+  mongo:7.0.12 \
+  mongod \
+    --wiredTigerCacheSizeGB 0.25 \
+    --bind_ip 0.0.0.0 \
+    --replSet rs0 \
+    --auth \
+    --keyFile /etc/keyfile-volume/keyfile \
+    --setParameter authenticationMechanisms=SCRAM-SHA-1
+
+
