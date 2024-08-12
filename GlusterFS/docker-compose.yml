@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  gluster-node1:
+    image: my-glusterfs-server
+    container_name: gluster-node1
+    hostname: gluster-node1
+    privileged: true
+    networks:
+      gluster-network:
+        ipv4_address: 192.168.100.2
+    volumes:
+      - gluster-node1-brick:/data/brick1
+
+  gluster-node2:
+    image: my-glusterfs-server
+    container_name: gluster-node2
+    hostname: gluster-node2
+    privileged: true
+    networks:
+      gluster-network:
+        ipv4_address: 192.168.100.3
+    volumes:
+      - gluster-node2-brick:/data/brick1
+
+  gluster-node3:
+    image: my-glusterfs-server
+    container_name: gluster-node3
+    hostname: gluster-node3
+    privileged: true
+    networks:
+      gluster-network:
+        ipv4_address: 192.168.100.4
+    volumes:
+      - gluster-node3-brick:/data/brick1
+
+networks:
+  gluster-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
+
+
+volumes:
+  gluster-node1-brick:
+  gluster-node2-brick:
+  gluster-node3-brick:

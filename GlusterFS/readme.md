@@ -2,32 +2,6 @@
 docker build -t my-glusterfs-server .
 
 
-docker network create gluster-network
-docker volume create gluster-node1-brick
-docker volume create gluster-node2-brick
-docker volume create gluster-node3-brick
-
-docker run -d --privileged --name gluster-node1 \
---hostname gluster-node1 \
---network gluster-network \
--v gluster-node1-brick:/data/brick1 \
-my-glusterfs-server
-
-
-docker run -d --privileged --name gluster-node2 \
---hostname gluster-node2 \
---network gluster-network \
--v gluster-node2-brick:/data/brick1 \
-my-glusterfs-server
-
-docker run -d --privileged --name gluster-node3 \
---hostname gluster-node3 \
---network gluster-network \
--v gluster-node3-brick:/data/brick1 \
-my-glusterfs-server
-
-
-
 docker exec gluster-node1 gluster peer probe gluster-node2
 docker exec gluster-node1 gluster peer probe gluster-node3
 docker exec gluster-node1 gluster peer status
@@ -37,17 +11,31 @@ docker exec gluster-node1 mkdir -p /data/brick1/brick
 docker exec gluster-node2 mkdir -p /data/brick1/brick
 docker exec gluster-node3 mkdir -p /data/brick1/brick
 
-gluster volume create gv0 replica 3 \
+docker exec gluster-node1 gluster volume create gv0 replica 3 \
   gluster-node1:/data/brick1/brick \
   gluster-node2:/data/brick1/brick \
   gluster-node3:/data/brick1/brick
 
 
+docker exec gluster-node1 gluster volume start gv0
+docker exec gluster-node1 gluster volume status
+docker exec gluster-node1 gluster volume info
 
-docker run -it --rm --network gluster-network --privileged ubuntu bash
+192.168.100.2 gluster-node1
+192.168.100.3 gluster-node2
+192.168.100.4 gluster-node3
+
 
 apt-get update
 apt-get install -y glusterfs-client fuse
-mkdir /mnt/glusterfs
 
-mount -t glusterfs -o tcp glusterfs-gluster-node1-1:/gv0 /mnt/glusterfs
+sudo mkdir /mnt/glusterfs/gv0/
+sudo mount -t glusterfs -o tcp glusterfs-gluster-node1-1:/gv0 /mnt/glusterfs/gv0/
+
+
+docker volume create --driver local \
+  --opt type=none \
+  --opt device=/mnt/glusterfs/gv0/ \
+  --opt o=bind glusterfs-volume
+
+docker run -ti --rm -v glusterfs-volume:/data ubuntu bash
